@@ -23,3 +23,4 @@ def wrapper(df):
         except:
             continue
     conn.commit()
+st.title('Thank you for helping us to label the data!')    
