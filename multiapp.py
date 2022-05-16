@@ -1,6 +1,9 @@
 """Frameworks for running multiple Streamlit applications as a single app.
 """
 import streamlit as st
+import pandas as pd
+import os
+
 
 class MultiApp:
     """Framework for combining multiple streamlit applications.
@@ -21,6 +24,7 @@ class MultiApp:
         app.add_app("Bar", bar.app)
         app.run()
     """
+
     def __init__(self):
         self.apps = []
 
@@ -39,10 +43,13 @@ class MultiApp:
         })
 
     def run(self):
+        #url = os.environ['CSV_URL']
+        url = "https://raw.githubusercontent.com/Osr-Tester/Data_Labelling/main/hansard_data.csv"
+        df = pd.read_csv(url)
         # app = st.sidebar.radio(
         app = st.selectbox(
-            'Navigation',
+            'Please select the drop down - Exit when done with labelling, thank you!',
             self.apps,
             format_func=lambda app: app['title'])
 
-        app['function']()
+        app['function'](df)
