@@ -21,7 +21,7 @@ def wrapper(df):
     count = np.random.randint(df.shape[0])
     #
     st.title('Welcome to the Fun of labelling!!')
-    st.write('Tweet text:')
+    st.write('Text:')
     while count in st.session_state['count']:
         if ct > df.shape[0]: break
         count = np.random.randint(df.shape[0])
@@ -33,11 +33,11 @@ def wrapper(df):
 
     with st.form(key='my_form', clear_on_submit=True):
         select_quality = st.radio(
-            "Is this tweet about quality of statistics?", ('Yes', 'No', 'I don\'t know'))
+            "Is there statistical content in this text?", ('Yes', 'No', 'I don\'t know'))
         submit_button = st.form_submit_button(label='Submit')
 
         if submit_button:
             st.session_state['labels'].append(select_quality)
             time.sleep(2)
 
-    st.write("Please select the 'Exit' drop down when done with labelling to save it in our database, thank you!")
+    st.markdown("_Please select the drop down - **Exit** when done with labelling, thank you!_")
